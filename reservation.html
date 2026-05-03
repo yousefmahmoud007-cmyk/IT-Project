@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Morning Bites | Reservation</title>
+  <link rel="icon" type="image/png" href="images/logo_icon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+  <style>
+    .reservation-card {
+      background: white;
+      border-radius: 32px;
+      padding: 2rem 2.5rem;
+      border: 1px solid #f0e2d4;
+      max-width: 860px;
+      margin: 0 auto 2rem;
+    }
+
+    .reservation-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #c17b3a;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #c17b3a;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 1.5px solid #e8d8c8;
+      border-radius: 14px;
+      padding: 0.65rem 1rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: #fffaf6;
+      color: #2c241a;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #c17b3a;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+
+    .submit-btn {
+      background: #c17b3a;
+      color: white;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      transition:
+        background 0.2s,
+        transform 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: #a66227;
+      transform: translateY(-2px);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 860px;
+      margin: 0 auto 2rem;
+    }
+
+    .info-card {
+      background: #ffece2;
+      border-radius: 24px;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+    }
+
+    .info-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #c17b3a;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card p {
+      font-size: 0.85rem;
+      color: #6f5540;
+      line-height: 1.6;
+    }
+
+    body.dark .reservation-card {
+      background: #1a1008;
+      border-color: #2e2018;
+    }
+
+    body.dark .reservation-card h2 {
+      color: #e8935a;
+    }
+
+    body.dark .info-card {
+      background: #1a1008;
+    }
+
+    body.dark .info-card p {
+      color: #a07850;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="full-body">
+    <header>
+      <div class="left-header">
+        <span onclick="openNavMenu()" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <div class="logo-img">
+          <img id="logo" src="images/logo_light.jpeg" alt="Morning Bites Logo" usemap="#logoMap">
+          <map name="logoMap">
+            <area shape="circle" coords="70,70,70" href="index.html" alt="Go to Home" title="🏠 Back to Home">
+          </map>
+        </div>
+        <button onclick="toggleTheme()" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <div class="right-header">
+        <a href="profile.html" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+        <div class="cart-icon-container">
+          <span onclick="openCartMenu()" class="cart-btn"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+    <nav class="nav-overlay" id="navOverlay">
+      <div class="nav-panel">
+        <button class="close-nav" id="closeNavBtn" title="Close Panel">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h4>Explore Morning Bites</h4>
+        <ul class="nav-links">
+          <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+          <li><a href="offers.html"><i class="fa-solid fa-tag"></i> Offers</a></li>
+          <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+          <li><a href="delivery.html"><i class="fa-solid fa-boxes-packing"></i> Delivery</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+          <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="cart-overlay" id="cartOverlay">
+      <div class="cart-panel">
+        <button class="close-cart" id="closeCartBtn" title="Close Panel"><i class="fa-solid fa-xmark"></i></button>
+        <h4>Your Cart</h4>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p>Total: <span class="cart-total" id="cartTotal">0</span> EGP</p>
+        <div class="control-btns">
+          <button class="checkout">Checkout</button>
+          <button class="clear-cart" id="clearCart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+    <div class="hero-reservation">
+      <h1><i class="fa-solid fa-calendar-check"></i> Reservation</h1>
+      <p>Book your table and enjoy a memorable dining experience</p>
+    </div>
+    <main>
+      <section class="reservation-card">
+        <h2><i class="fa-solid fa-chair"></i> Book a Table</h2>
+        <form id="reservationForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label><i class="fa-solid fa-user"></i> FULL NAME</label>
+              <input type="text" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+              <label><i class="fa-solid fa-calendar"></i> DATE</label>
+              <input type="date" />
+            </div>
+            <div class="form-group">
+              <label><i class="fa-solid fa-envelope"></i> EMAIL ADDRESS</label>
+              <input type="email" placeholder="Enter your email" />
+            </div>
+            <div class="form-group">
+              <label><i class="fa-solid fa-clock"></i> TIME</label>
+              <input type="time" />
+            </div>
+            <div class="form-group">
+              <label><i class="fa-solid fa-phone"></i> PHONE NUMBER</label>
+              <input type="tel" placeholder="Enter your phone number" />
+            </div>
+            <div class="form-group">
+              <label><i class="fa-solid fa-users"></i> NUMBER OF GUESTS</label>
+              <select>
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4 Guests</option>
+                <option>5+ Guests</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label><i class="fa-solid fa-comment"></i> SPECIAL REQUEST
+                (OPTIONAL)</label>
+              <textarea placeholder="Add any special request"></textarea>
+            </div>
+            <div class="form-group full-width">
+              <button type="submit" class="submit-btn">
+                <i class="fa-solid fa-circle-check"></i> Confirm Reservation
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+      <section class="info-grid">
+        <div class="info-card">
+          <h3><i class="fa-solid fa-clock"></i> Opening Hours</h3>
+          <p>Open Daily<br />8:00 AM – 8:00 PM</p>
+        </div>
+        <div class="info-card">
+          <h3><i class="fa-solid fa-location-dot"></i> Find Us</h3>
+          <p>123 Gourmet Street<br />Cairo, Egypt</p>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2026 Morning Bites - All Rights Reserved</footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

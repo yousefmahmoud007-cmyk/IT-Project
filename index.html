@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Morning Bites | Home</title>
+  <link rel="icon" type="image/png" href="images/logo_icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <style>
+    .hero-text h1 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      /* حجم مرن يتناسب مع الشاشة */
+    }
+
+    .order-now-btn {
+      background: #c17b3a;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .order-now-btn:hover {
+      background: #a66227;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="full-body">
+    <header>
+      <div class="left-header">
+        <span onclick="openNavMenu()" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <div class="logo-img">
+          <img id="logo" src="images/logo_light.jpeg" alt="Morning Bites Logo" usemap="#logoMap">
+          <map name="logoMap">
+            <area shape="circle" coords="70,70,70" href="index.html" alt="Go to Home" title="🏠 Back to Home">
+          </map>
+        </div>
+        <button onclick="toggleTheme()" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <div class="right-header">
+        <a href="profile.html" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+        <div class="cart-icon-container">
+          <span onclick="openCartMenu()" class="cart-btn"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+    <nav class="nav-overlay" id="navOverlay">
+      <div class="nav-panel">
+        <button class="close-nav" id="closeNavBtn" title="Close Panel">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h4>Explore Morning Bites</h4>
+        <ul class="nav-links">
+          <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+          <li><a href="offers.html"><i class="fa-solid fa-tag"></i> Offers</a></li>
+          <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+          <li><a href="delivery.html"><i class="fa-solid fa-boxes-packing"></i> Delivery</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+          <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="cart-overlay" id="cartOverlay">
+      <div class="cart-panel">
+        <button class="close-cart" id="closeCartBtn" title="Close Panel"><i class="fa-solid fa-xmark"></i></button>
+        <h4>Your Cart</h4>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p>Total: <span class="cart-total" id="cartTotal">0</span> EGP</p>
+        <div class="control-btns">
+          <button class="checkout">Checkout</button>
+          <button class="clear-cart" id="clearCart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h1><i class="fa-solid fa-sun" style="color:#c17b3a;"></i> Fresh Breakfast Every Morning</h1>
+          <p>Start your day with delicious meals</p>
+          <button class="order-now-btn take-to-menu" onclick="window.location.href='menu.html'">
+            <i class="fa-solid fa-bag-shopping"></i> Order Now
+          </button>
+        </div>
+        <div class="hero-img">
+          <img src="images/breakfast.jpg" alt="Breakfast">
+        </div>
+      </section>
+      <section class="featured">
+        <h2><i class="fa-solid fa-star" style="color:#c17b3a;"></i> The dishes we specialize in</h2>
+        <div class="cards">
+          <div class="card" class="product" data-id="1" data-name="Pancakes" data-price="65">
+            <img class="img" src="images/pancake.jpg" alt="Pancakes">
+            <p>Pancakes 🥞</p>
+            <span class="price"><i class="fa-solid fa-fire"></i> Only 65 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="card" class="product" data-id="2" data-name="Croissant" data-price="45">
+            <img class="img" src="images/plain.jpg" alt="Croissant">
+            <p>Croissant 🥐</p>
+            <span class="price"><i class="fa-solid fa-bolt"></i> 45 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="card" class="product" data-id="3" data-name="Waffles" data-price="75">
+            <img class="img" src="images/WAFFLES.jpeg" alt="Waffle">
+            <p>Waffles 🧇</p>
+            <span class="price"><i class="fa-solid fa-fire"></i> 75 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="card" class="product" data-id="4" data-name="Latte" data-price="55">
+            <img class="img" src="images/LATTE.jpeg" alt="Latte">
+            <p>Latte ☕</p>
+            <span class="price"><i class="fa-solid fa-mug-hot"></i> 55 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+        </div>
+      </section>
+      <section class="actions">
+        <a href="menu.html"><button class="action-btn"><i class="fa-solid fa-book-open"></i> View Menu</button></a>
+        <a href="reservation.html"><button class="action-btn"><i class="fa-solid fa-calendar-check"></i> Reserve
+            Table</button></a>
+        <a href="delivery.html"><button class="action-btn"><i class="fa-solid fa-boxes-packing"></i> Order
+            Delivery</button></a>
+      </section>
+    </main>
+    <footer>&copy; 2026 Morning Bites - All Rights Reserved</footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

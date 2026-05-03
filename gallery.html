@@ -1,0 +1,70 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Gallery</title> 
+    <link rel="stylesheet" href="style.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head> 
+<body> 
+    
+    <header>
+        <div class="left-header">
+            <span onclick="openNavMenu()" class="menu-btn">☰</span> 
+            <h1>Welcome to Gallery</h1>
+        </div>
+        <div class="right-header">
+            <button class="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="full-body"> 
+        
+        <div id="navOverlay" class="nav-overlay">
+            <div class="nav-panel">
+                <button id="closeNavBtn" class="close-nav">✖</button>
+                <h4>Menu</h4>
+                <ul class="nav-links">
+                     <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                     <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+                     <li><a href="offers.html"><i class="fa-solid fa-tag"></i> Offers</a></li>
+                     <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+                     <li><a href="delivery.html"><i class="fa-solid fa-boxes-packing"></i> Delivery</a></li>
+                     <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+                     <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="hero-offers">
+            <h2>Our Restaurant</h2> 
+            <p>Discover a culinary haven where passion meets flavor. Our restaurant offers a diverse menu crafted with the freshest ingredients, creating an unforgettable dining experience that tantalizes your taste buds.</p> 
+        </section>
+
+        <section class="restaurant" style="text-align: center; margin-bottom: 2rem;"> 
+            <img src="images/2.jpg" alt="restaurant" style="max-width: 100%; border-radius: 20px;"> 
+        </section> 
+        
+        <section class="hero-offers">
+            <h2>Gallery</h2> 
+            <p>Experience the perfect blend of flavors and ambiance at our restaurant. From delectable dishes to a cozy atmosphere, we invite you to indulge in a culinary journey that delights your senses.</p> 
+        </section>
+
+        <section class="gallery-controls" style="text-align: center; margin-bottom: 2rem;"> 
+            <div class="gallery" style="margin-bottom: 1rem;"> 
+                <img src="images/cheese (2).jpg" alt="Gallery Image" style="max-width: 100%; border-radius: 20px; height: 300px; object-fit: cover;"> 
+            </div> 
+            <button class="action-btn prev">&larr; Prev</button> 
+            <button class="action-btn next">Next &rarr;</button> 
+        </section> 
+        
+    </main> 
+
+    <footer class="footer"> 
+        <p>&copy; 2026 Morning Bites. All Rights Reserved.</p> 
+    </footer> 
+    
+    <script src="script.js"></script> 
+</body> 
+</html>

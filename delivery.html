@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Bites | Delivery</title>
+    <link rel="icon" type="image/png" href="images/logo_icon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <style>
+        .hero-delivery {
+            background: #ffece2;
+            border-radius: 36px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.4rem;
+            margin-top: 2.4rem;
+            text-align: left;
+            transition: 0.2s;
+        }
+
+        .hero-delivery h1 {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .hero-delivery p {
+            color: #6f5540;
+            margin-top: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .layout-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            background: white;
+            color: #c17b3a;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid #ffe2c4;
+            border-radius: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 0 auto 2.5rem auto;
+            padding: 2rem 2.5rem;
+            width: 800px;
+            height: auto;
+            z-index: 100;
+            transition: 0.2s;
+        }
+
+        .form-container h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #c17b3a;
+            margin-bottom: 1.5rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-container input,
+        select,
+        textarea {
+            border: 1.5px solid #f0e0d0;
+            width: 100%;
+            padding: 10px;
+            font-family: inherit;
+            box-sizing: border-box;
+            margin-top: 5px;
+            border-radius: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-container input:focus,
+        .form-container select:focus,
+        .form-container textarea:focus {
+            border-color: #c17b3a;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+        }
+
+        .form-container textarea {
+            height: 70px;
+            resize: none;
+        }
+
+        .field button {
+            background: #c17b3a;
+            color: white;
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .field button:hover {
+            cursor: pointer;
+            background-color: #a66227;
+            transform: translateY(-2px);
+        }
+
+        body.dark .hero-delivery {
+            background: #1a1008;
+        }
+
+        body.dark .form-container {
+            background: #1a1008;
+            border-color: #2e2018;
+        }
+
+        body.dark .form-container h2 {
+            color: #e8935a;
+        }
+
+        body.dark .form-container input,
+        body.dark .form-container select,
+        body.dark .form-container textarea {
+            background: #1e1e1e;
+            border-color: #2e2018;
+            color: #f0e6da;
+        }
+
+        body.dark .form-container input:focus,
+        body.dark .form-container select:focus,
+        body.dark .form-container textarea:focus {
+            border-color: #c17b3a;
+        }
+
+        input.error-border,
+        select.error-border,
+        textarea.error-border {
+            border: 2px solid #e74c3c !important;
+            outline: none;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .char-counter {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .toast-delivery {
+            font-weight: 600;
+            font-size: 0.9rem;
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            border-radius: 40px;
+            padding: 0.8rem 2rem;
+            position: fixed;
+            z-index: 9999;
+            bottom: -100px;
+            transition: bottom 0.5s, visibility 0.5s;
+            pointer-events: none;
+        }
+
+        .toast-delivery.show {
+            visibility: visible;
+            bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="full-body">
+        <header>
+      <div class="left-header">
+        <span onclick="openNavMenu()" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <div class="logo-img">
+          <img id="logo" src="images/logo_light.jpeg" alt="Morning Bites Logo" usemap="#logoMap">
+          <map name="logoMap">
+            <area shape="circle" coords="70,70,70" href="index.html" alt="Go to Home" title="🏠 Back to Home">
+          </map>
+        </div>
+        <button onclick="toggleTheme()" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <div class="right-header">
+        <a href="profile.html" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+        <div class="cart-icon-container">
+          <span onclick="openCartMenu()" class="cart-btn"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+        <nav class="nav-overlay" id="navOverlay">
+            <div class="nav-panel">
+                <button class="close-nav" id="closeNavBtn" title="Close Panel"><i
+                        class="fa-solid fa-xmark"></i></button>
+                <h4>Explore Morning Bites</h4>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+                    <li><a href="offers.html"><i class="fa-solid fa-tag"></i> Offers</a></li>
+                    <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+                    <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+                    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section class="cart-overlay" id="cartOverlay">
+            <div class="cart-panel">
+                <button class="close-cart" id="closeCartBtn" title="Close Panel"><i
+                        class="fa-solid fa-xmark"></i></button>
+                <h4>Your Cart</h4>
+                <ul class="cart-items" id="cartItems"></ul>
+                <p>Total: <span class="cart-total" id="cartTotal">0</span> EGP</p>
+                <div class="control-btns">
+                    <button class="checkout">Checkout</button>
+                    <button class="clear-cart" id="clearCart">Clear Cart</button>
+                </div>
+            </div>
+        </section>
+        <section class="hero-delivery">
+            <h1><i class="fa-solid fa-boxes-packing"></i> Delivery</h1>
+            <p>Have your breakfast delivered right to your doorstep</p>
+        </section>
+        <main class="layout-container">
+            <form class="form-container">
+                <h2 class="label full-width"><i class="fa-solid fa-address-card"></i> Fill in your Information</h2>
+                <div class="field">
+                    <label for="fname"><i class="fa-solid fa-user"></i> FIRST NAME</label>
+                    <input type="text" id="fname" name="fname" placeholder="e.g., Ahmed" required>
+                </div>
+                <div class="field">
+                    <label for="lname"><i class="fa-solid fa-user"></i> LAST NAME</label>
+                    <input type="text" id="lname" name="lname" placeholder="e.g., Mohammed" required>
+                </div>
+                <div class="field full-width">
+                    <label for="email"><i class="fa-solid fa-envelope"></i> EMAIL</label>
+                    <input type="email" id="email" name="email" placeholder="e.g., ahmed123@gmail.com" required>
+                </div>
+                <div class="field full-width">
+                    <label for="phone"><i class="fa-solid fa-phone"></i> PHONE NUMBER</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g.,01012345678" required>
+                </div>
+                <div class="field">
+                    <label for="govs"><i class="fa-solid fa-city"></i> GOVERNORATE</label>
+                    <select id="govs" name="govs" required>
+                        <option value="alexandria">Alexandria</option>
+                        <option value="aswan">Aswan</option>
+                        <option value="assiut">Assiut</option>
+                        <option value="beheira">Beheira</option>
+                        <option value="beni-suef">Beni Suef</option>
+                        <option value="cairo" selected>Cairo</option>
+                        <option value="dakahlia">Dakahlia</option>
+                        <option value="damietta">Damietta</option>
+                        <option value="fayoum">Fayoum</option>
+                        <option value="gharbia">Gharbia</option>
+                        <option value="giza">Giza</option>
+                        <option value="ismailia">Ismailia</option>
+                        <option value="kafr-el-sheikh">Kafr el-Sheikh</option>
+                        <option value="luxor">Luxor</option>
+                        <option value="matrouh">Matrouh</option>
+                        <option value="minya">Minya</option>
+                        <option value="menofia">Menofia</option>
+                        <option value="new-valley">New Valley</option>
+                        <option value="north-sinai">North Sinai</option>
+                        <option value="port-said">Port Said</option>
+                        <option value="qualyubia">Qualyubia</option>
+                        <option value="qena">Qena</option>
+                        <option value="red-sea">Red Sea</option>
+                        <option value="al-sharqia">Al-Sharqia</option>
+                        <option value="sohag">Sohag</option>
+                        <option value="south-sinai">South Sinai</option>
+                        <option value="suez">Suez</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="address"><i class="fa-solid fa-location-dot"></i> ADDRESS</label>
+                    <input type="text" id="address" name="address" placeholder="e.g., 15 Al-Tahrir Street, Garden City"
+                        required>
+                </div>
+                <div class="field">
+                    <label for="floorNum"><i class="fa-solid fa-stairs"></i> FLOOR NUMBER</label>
+                    <input type="number" id="floorNum" name="floorNum" placeholder="e.g., 1" min="0" required>
+                </div>
+                <div class="field">
+                    <label for="apartNum"><i class="fa-solid fa-door-closed"></i> APARTMENT NUMBER</label>
+                    <input type="number" id="apartNum" name="apartNum" placeholder="e.g., 5" min="1" required>
+                </div>
+                <div class="field full-width">
+                    <label for="addressLabel"><i class="fa-solid fa-tag"></i> ADDRESS LABEL</label>
+                    <input type="text" id="addressLabel" name="addressLabel" placeholder="e.g., Home or Work"
+                        required>
+                </div>
+                <div class="field full-width">
+                    <label for="deliveryInst"><i class="fa-solid fa-rectangle-list"></i> DELIVERY INSTRUCTIONS
+                        (OPTIONAL)</label>
+                    <textarea id="deliveryInst" name="deliveryInst"
+                        placeholder="Write your instructions..."></textarea>
+                </div>
+                <div class="field full-width">
+                    <button type="button" onclick="saveToSession()"><i class="fa-solid fa-circle-check"></i>
+                        Save</button>
+                </div>
+            </form>
+            <div id="toastDelivery" class="toast-delivery">
+                <i class="fa-solid fa-circle-check"></i> Saved Successfully!
+            </div>
+        </main>
+        <section class="info-grid">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-clock"></i> Delivery Hours</h3>
+                <p>Daily<br>8:00 AM – 8:00 PM</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fa-solid fa-phone"></i> Phone Orders</h3>
+                <p>Call us at:<br>17221</p>
+            </div>
+        </section>
+        <footer>&copy; 2026 Morning Bites - All Rights Reserved</footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

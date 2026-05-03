@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Morning Bites | Offers</title>
+  <link rel="icon" type="image/png" href="images/logo_icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <style>
+    .spotlight-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, #fff5ec, #ffece2);
+      border-radius: 36px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #f0d9c8;
+    }
+
+    .spotlight-info {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .spotlight-img {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .spotlight-img img {
+      width: 100%;
+      border-radius: 28px;
+      object-fit: cover;
+      max-height: 280px;
+    }
+
+    .limited-tag {
+      display: inline-block;
+      background: #fff0e0;
+      color: #c17b3a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.9rem;
+      border-radius: 40px;
+      margin-bottom: 0.8rem;
+      border: 1px solid #f0d9c8;
+    }
+
+    .spotlight-info h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2c241a;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-line {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .old-price {
+      font-size: 1rem;
+      text-decoration: line-through;
+      color: #bbb;
+    }
+
+    .new-price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #c17b3a;
+    }
+
+    .special-desc {
+      font-size: 0.88rem;
+      color: #6f5540;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .special-order {
+      background: #c17b3a;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .special-order:hover {
+      background: #a66227;
+      transform: translateY(-2px);
+    }
+
+    .special-order:active {
+      transform: scale(1.1);
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .offer-card {
+      background: white;
+      border-radius: 24px;
+      border: 1px solid #f0e2d4;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2c241a;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: #876e55;
+    }
+
+    .discount-chip {
+      display: inline-block;
+      background: #fff0e0;
+      color: #c17b3a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 40px;
+      border: 1px solid #f0d9c8;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #2c241a;
+      margin: 2rem 0 1.2rem;
+    }
+
+    .menu-picks {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .menu-item-card {
+      background: white;
+      border: 1px solid #f0e2d4;
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.2s;
+    }
+
+    .menu-item-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .item-pricing {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .item-old {
+      font-size: 0.8rem;
+      color: #bbb;
+      text-decoration: line-through;
+    }
+
+    .item-new {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #c17b3a;
+    }
+
+    body.dark .spotlight-card {
+      background: linear-gradient(135deg, #1a1008, #120c04);
+      border-color: #2e2018;
+    }
+
+    body.dark .spotlight-info h2 {
+      color: #f0e6da;
+    }
+
+    body.dark .offer-card {
+      background: #1e1e1e;
+      border-color: #2e2018;
+    }
+
+    body.dark .card-title {
+      color: #f0e6da;
+    }
+
+    body.dark .card-desc {
+      color: #a07850;
+    }
+
+    body.dark .menu-item-card {
+      background: #1e1e1e;
+      border-color: #2e2018;
+    }
+
+    body.dark .limited-tag {
+      background: #2a1a0a;
+      border-color: #3e2a18;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="full-body">
+    <header>
+      <div class="left-header">
+        <span onclick="openNavMenu()" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <div class="logo-img">
+          <img id="logo" src="images/logo_light.jpeg" alt="Morning Bites Logo" usemap="#logoMap">
+          <map name="logoMap">
+            <area shape="circle" coords="70,70,70" href="index.html" alt="Go to Home" title="🏠 Back to Home">
+          </map>
+        </div>
+        <button onclick="toggleTheme()" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <div class="right-header">
+        <a href="profile.html" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+        <div class="cart-icon-container">
+          <span onclick="openCartMenu()" class="cart-btn"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+    <nav class="nav-overlay" id="navOverlay">
+      <div class="nav-panel">
+        <button class="close-nav" id="closeNavBtn" title="Close Panel"><i class="fa-solid fa-xmark"></i></button>
+        <h4>Explore Morning Bites</h4>
+        <ul class="nav-links">
+          <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+          <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+          <li><a href="delivery.html"><i class="fa-solid fa-boxes-packing"></i> Delivery</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+          <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="cart-overlay" id="cartOverlay">
+      <div class="cart-panel">
+        <button class="close-cart" id="closeCartBtn" title="Close Panel"><i class="fa-solid fa-xmark"></i></button>
+        <h4>Your Cart</h4>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p>Total: <span class="cart-total" id="cartTotal">0</span> EGP</p>
+        <div class="control-btns">
+          <button class="checkout">Checkout</button>
+          <button class="clear-cart" id="clearCart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+    <div class="hero-offers">
+      <h1><i class="fa-solid fa-percent"></i> Our Offers</h1>
+      <p>Good food is even better with great offers!<br>Check out our special deals made to brighten your mornings.</p>
+    </div>
+    <main>
+      <section class="spotlight-card">
+        <div class="spotlight-info" data-id="26" data-name="Sunrise Delight Bowl" data-price="75">
+          <div class="limited-tag">✨ Limited time · Fan favorite ✨</div>
+          <h2>Sunrise Delight Bowl</h2>
+          <div class="price-line">
+            <span class="old-price">150 EGP</span>
+            <span class="new-price">75 EGP</span>
+          </div>
+          <div class="special-desc">
+            Blackberries and raspberries garnish a slice of cheesecake on a plate.<br>
+            <strong>Not on our regular menu — yet!</strong> If you love it, we'll add it permanently.<br>
+            50% OFF intro offer!
+          </div>
+          <button class="order-now-btn special-order add-to-cart">
+            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+        <div class="spotlight-img">
+          <img src="images/sunrise.jpeg" alt="Sunrise Delight Bowl">
+        </div>
+      </section>
+      <section class="offer-grid">
+        <div class="offer-card">
+          <div class="card-img"><img src="images/offer 1.jpeg" alt="early bird"></div>
+          <div class="card-content">
+            <div class="card-title"><i class="fa-solid fa-sun"></i> Early Bird Offer</div>
+            <div class="card-desc">Monday to Friday · before 10 AM</div>
+            <span class="discount-chip"><i class="fa-solid fa-percent"></i> 20% OFF on all orders</span>
+            <button class="order-card-btn core-order take-to-menu"><i class="fa-solid fa-list-ul"></i> Check the
+              Menu</button>
+          </div>
+        </div>
+        <div class="offer-card">
+          <div class="card-img"><img src="images/buddy offer.jpeg" alt="breakfast buddy"></div>
+          <div class="card-content">
+            <div class="card-title"><i class="fa-solid fa-user-group"></i> Breakfast Buddy</div>
+            <div class="card-desc">Buy 1 breakfast meal · get 1 in half price</div>
+            <span class="discount-chip"><i class="fa-solid fa-tags"></i> BOGO Half Price (Weekends)</span>
+            <button class="order-card-btn core-order take-to-menu"><i class="fa-solid fa-list-ul"></i> Check the
+              Menu</button>
+          </div>
+        </div>
+        <div class="offer-card">
+          <div class="card-img"><img src="images/salad.jpeg" alt="healthy happy"></div>
+          <div class="card-content">
+            <div class="card-title"><i class="fa-solid fa-leaf"></i> Healthy &amp; Happy</div>
+            <div class="card-desc">15% off all healthy bowls &amp; salads, every day</div>
+            <span class="discount-chip"><i class="fa-solid fa-percent"></i> 15% OFF</span>
+            <button class="order-card-btn core-order take-to-menu"><i class="fa-solid fa-list-ul"></i> Check the
+              Menu</button>
+          </div>
+        </div>
+        <div class="offer-card">
+          <div class="card-img"><img src="images/offer 4.jpeg" alt="coffee on us"></div>
+          <div class="card-content">
+            <div class="card-title"><i class="fa-solid fa-mug-hot"></i> Coffee on Us</div>
+            <div class="card-desc">Free coffee with any sandwich or wrap</div>
+            <span class="discount-chip"><i class="fa-solid fa-gift"></i> FREE Coffee</span>
+            <button class="order-card-btn core-order take-to-menu"><i class="fa-solid fa-list-ul"></i> Check the
+              Menu</button>
+          </div>
+        </div>
+      </section>
+      <section class="discounted-items">
+        <div class="section-title"><i class="fa-solid fa-fire"></i> Special discounted bites</div>
+        <div class="menu-picks">
+          <div class="menu-item-card" data-id="27" data-name="Croissant (-30%)" data-price="31.5">
+            <div class="card-title">Croissant</div>
+            <div class="item-pricing">
+              <span class="item-old">45 EGP</span>
+              <span class="item-new">31.5 EGP</span>
+              <span class="discount-chip">-30%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="menu-item-card" data-id="28" data-name="Chocolate Croissant (-25%)" data-price="41.25">
+            <div class="card-title">Chocolate Croissant</div>
+            <div class="item-pricing">
+              <span class="item-old">55 EGP</span>
+              <span class="item-new">41.25 EGP</span>
+              <span class="discount-chip">-25%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="menu-item-card" data-id="29" data-name="Egg &amp; Cheese Sandwich (-40%)" data-price="27">
+            <div class="card-title">Egg &amp; Cheese Sandwich</div>
+            <div class="item-pricing">
+              <span class="item-old">45 EGP</span>
+              <span class="item-new">27 EGP</span>
+              <span class="discount-chip">-40%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="menu-item-card" data-id="30" data-name="Smoked Turkey Sandwich (-20%)" data-price="76">
+            <div class="card-title">Smoked Turkey Sandwich</div>
+            <div class="item-pricing">
+              <span class="item-old">95 EGP</span>
+              <span class="item-new">76 EGP</span>
+              <span class="discount-chip">-20%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="menu-item-card" data-id="31" data-name="Latte (-25%)" data-price="41.25">
+            <div class="card-title">Latte</div>
+            <div class="item-pricing">
+              <span class="item-old">55 EGP</span>
+              <span class="item-new">41.25 EGP</span>
+              <span class="discount-chip">-25%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="menu-item-card" data-id="32" data-name="Fresh Orange Juice (-25%)" data-price="30">
+            <div class="card-title">Fresh Orange Juice</div>
+            <div class="item-pricing">
+              <span class="item-old">40 EGP</span>
+              <span class="item-new">30 EGP</span>
+              <span class="discount-chip">-25%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="menu-item-card" data-id="33" data-name="Waffles (-25%)" data-price="56.25">
+            <div class="card-title">Waffles</div>
+            <div class="item-pricing">
+              <span class="item-old">75 EGP</span>
+              <span class="item-new">56.25 EGP</span>
+              <span class="discount-chip">-25%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="menu-item-card" data-id="34" data-name="Pancakes (-20%)" data-price="52">
+            <div class="card-title">Pancakes</div>
+            <div class="item-pricing">
+              <span class="item-old">65 EGP</span>
+              <span class="item-new">52 EGP</span>
+              <span class="discount-chip">-20%</span>
+            </div>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+        </div>
+      </section>
+      <p style="font-size:0.7rem; text-align:center; margin-top:1rem; color:#b18f72;">
+        <i class="fa-solid fa-circle-exclamation"></i> *Offers cannot be combined with other promotions.
+      </p>
+    </main>
+    <footer>&copy; 2026 Morning Bites - All Rights Reserved</footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

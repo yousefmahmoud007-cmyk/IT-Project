@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Bites | My Profile</title>
+  <link rel="icon" type="image/png" href="images/logo_icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="full-body">
+
+    <header>
+      <div class="left-header">
+        <span onclick="openNavMenu()" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <div class="logo-img">
+          <img id="logo" src="images/logo_light.jpeg" alt="Morning Bites Logo" usemap="#logoMap">
+          <map name="logoMap">
+            <area shape="circle" coords="70,70,70" href="index.html" alt="Go to Home" title="🏠 Back to Home">
+          </map>
+        </div>
+        <button onclick="toggleTheme()" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <div class="right-header">
+        <a href="profile.html" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+        <div class="cart-icon-container">
+          <span onclick="openCartMenu()" class="cart-btn"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="nav-overlay" id="navOverlay">
+      <div class="nav-panel">
+        <button class="close-nav" id="closeNavBtn" title="Close Panel">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h4>Explore Morning Bites</h4>
+        <ul class="nav-links">
+          <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+          <li><a href="offers.html"><i class="fa-solid fa-tag"></i> Offers</a></li>
+          <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+          <li><a href="delivery.html"><i class="fa-solid fa-boxes-packing"></i> Delivery</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+          <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="cart-overlay" id="cartOverlay">
+      <div class="cart-panel">
+        <button class="close-cart" id="closeCartBtn" title="Close Panel"><i class="fa-solid fa-xmark"></i></button>
+        <h4>Your Cart</h4>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p>Total: <span class="cart-total" id="cartTotal">0</span> EGP</p>
+        <div class="control-btns">
+          <button class="checkout">Checkout</button>
+          <button class="clear-cart" id="clearCart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+    <div class="profile" >
+      <div class="pro">
+        <div class="profileimg" id="profileAvatar"><i class="fa-solid fa-user"></i></div>
+        <label class="edit" for="profileAvatarInput"><i class="fa-solid fa-camera"></i></label>
+        <input type="file" id="profileAvatarInput" accept="image/*" hidden>
+      </div>
+      <div class="info">
+        <h1 id="profileName">Good morning!</h1>
+        <p id="profileEmail"><i class="fa-solid fa-envelope"></i> —</p>
+        <p id="profilePhone"><i class="fa-solid fa-phone"></i> —</p>
+        <span class="member-badge"><i class="fa-solid fa-star"></i> Member</span>
+      </div>
+    </div>
+    <div class="info-form-container">
+      <div class="form-headline">
+        <h2><i class="fa-solid fa-pen-to-square"></i> Edit Profile</h2>
+      </div>
+      <form class="edit-form" id="profileForm" novalidate>
+        <div class="form-body">
+          <div class="info-form-input">
+            <label><i class="fa-solid fa-user"></i> FULL NAME</label>
+            <input type="text" id="editName" placeholder="Enter your full name" required>
+            <span class="form-error" id="p-err-name"></span>
+          </div>
+          <div class="info-form-input">
+            <label><i class="fa-solid fa-envelope"></i> EMAIL</label>
+            <input type="email" id="editEmail" placeholder="Enter your email" required>
+            <span class="form-error" id="p-err-email"></span>
+          </div>
+          <div class="info-form-input">
+            <label><i class="fa-solid fa-phone"></i> PHONE</label>
+            <input type="tel" id="editPhone" placeholder="Enter your phone number">
+          </div>
+          <div class="info-form-input">
+            <label><i class="fa-solid fa-key"></i> NEW PASSWORD</label>
+            <div class="eye">
+              <input type="password" id="editPass" placeholder="Enter new password (blank to keep current)">
+              <button type="button" class="eye2" id="toggleEditPass"><i class="fa-solid fa-eye"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="info-form-buttons">
+          <button type="submit" class="submit"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+          <button type="button" class="logout" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Sign out</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="toast-profile-container">
+      <div class="toast-profile" id="toastProfile"><i class="fa-solid fa-circle-check"></i> Saved Successfully!</div>
+    </div>
+
+    <footer>&copy; 2026 Morning Bites - All Rights Reserved</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

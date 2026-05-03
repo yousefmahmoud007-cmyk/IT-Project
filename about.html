@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Bites | About Us</title>
+  <link rel="icon" type="image/png" href="images/logo_icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <style>
+    .review-card {
+      background: white;
+      border-radius: 24px;
+      border: 1px solid #f0e2d4;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="full-body">
+
+    <header>
+      <div class="left-header">
+        <span onclick="openNavMenu()" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <div class="logo-img">
+          <img id="logo" src="images/logo_light.jpeg" alt="Morning Bites Logo" usemap="#logoMap">
+          <map name="logoMap">
+            <area shape="circle" coords="70,70,70" href="index.html" alt="Go to Home" title="🏠 Back to Home">
+          </map>
+        </div>
+        <button onclick="toggleTheme()" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <div class="right-header">
+        <a href="profile.html" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+        <div class="cart-icon-container">
+          <span onclick="openCartMenu()" class="cart-btn"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+    <nav class="nav-overlay" id="navOverlay">
+      <div class="nav-panel">
+        <button class="close-nav" id="closeNavBtn" title="Close Panel">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h4>Explore Morning Bites</h4>
+        <ul class="nav-links">
+          <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menu</a></li>
+          <li><a href="offers.html"><i class="fa-solid fa-tag"></i> Offers</a></li>
+          <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+          <li><a href="delivery.html"><i class="fa-solid fa-boxes-packing"></i> Delivery</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="cart-overlay" id="cartOverlay">
+      <div class="cart-panel">
+        <button class="close-cart" id="closeCartBtn" title="Close Panel"><i class="fa-solid fa-xmark"></i></button>
+        <h4>Your Cart</h4>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p>Total: <span class="cart-total" id="cartTotal">0</span> EGP</p>
+        <div class="control-btns">
+          <button class="checkout">Checkout</button>
+          <button class="clear-cart" id="clearCart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+    <div class="hero-about">
+      <h1><i class="fa-solid fa-circle-info"></i> About Us</h1>
+      <p>Get to know our story, our passion, and our people.</p>
+    </div>
+    <main>
+      <section style="margin-bottom:40px;">
+        <h2 class="section-title-about"><i class="fa-solid fa-book-open"></i> Our Story</h2>
+        <div class="spotlightcard" style="flex-wrap:wrap;">
+          <div class="spotlightinfo">
+            <p style="font-size:15px; color:#6f5540; line-height:1.8; margin-bottom:16px;">
+              Morning Bites opened its doors in 2018 with a simple dream: to make mornings brighter with fresh,
+              delicious breakfasts. We believe that every great day starts with a great meal, and we source the finest
+              local ingredients to craft dishes that are both nutritious and delightful.
+            </p>
+            <p style="font-size:15px; color:#6f5540; line-height:1.8;">
+              Our chefs combine traditional recipes with modern twists, and our cozy atmosphere is designed to make you
+              feel right at home. Whether you're grabbing a quick coffee or enjoying a lazy brunch with friends, Morning
+              Bites is the place to be.
+            </p>
+          </div>
+          <img src="images/cooking.jpg" alt="Chef cooking"
+            style="width:100%; border-radius:28px; object-fit:cover; max-height:260px; flex:1;">
+        </div>
+      </section>
+      <section style="margin-bottom:40px;">
+        <h2 class="section-title-about"><i class="fa-solid fa-images"></i> Explore Our Space &amp; Dishes</h2>
+        <p style="font-size:14px; color:#876e55; margin-bottom:19px;">From our sunny seating area to the art on every
+          plate, see what makes Morning Bites special.</p>
+        <div class="explore-cards">
+          <div class="explore-card">
+            <img class="img" src="images/tabels.jpg" alt="Cozy interior">
+            <p>Warm &amp; Inviting Atmosphere</p>
+          </div>
+          <div class="explore-card">
+            <img class="img" src="images/place.jpg" alt="Exterior">
+            <p>A Welcoming Start to Your Day</p>
+          </div>
+          <div class="explore-card">
+            <img class="img" src="images/cooking.jpg" alt="Chef cooking">
+            <p>Freshly Prepared with Passion</p>
+          </div>
+          <div class="explore-card">
+            <img class="img" src="images/staff.jpg" alt="Our team">
+            <p>Together, We Make Mornings Special</p>
+          </div>
+        </div>
+      </section>
+      <section style="margin-bottom:40px;">
+        <h2 class="section-title-about"><i class="fa-solid fa-music"></i> Our Vibe</h2>
+        <div class="music-sample" style="max-width:100%; padding:24px 32px;">
+          <p style="font-size:14px; color:#6f5540; margin-bottom:16px;">Enjoy a sample of the music we play in the
+            restaurant:</p>
+          <audio controls style="width:100%; border-radius:40px; accent-color:#c17b3a;">
+            <source src="sounds/void.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </section>
+      <section style="margin-bottom:40px;">
+        <h2 class="section-title-about"><i class="fa-solid fa-star"></i> What Our Customers Say</h2>
+        <div class="review-grid" style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));">
+          <div class="review-card">
+            <div class="content" style="padding:22px;">
+              <span style="font-size:19px; margin-bottom:10px;">⭐⭐⭐⭐⭐</span>
+              <p style="font-size:14px; color:#6f5540; line-height:1.7; margin-bottom:13px; font-style:italic;">"Best
+                breakfast in town! The pancakes are fluffy and the coffee is perfect."</p>
+              <span class="reviewer-name"><i class="fa-solid fa-user"></i> Sarah Johnson</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="content" style="padding:22px;">
+              <span style="font-size:19px; margin-bottom:10px;">⭐⭐⭐⭐⭐</span>
+              <p style="font-size:14px; color:#6f5540; line-height:1.7; margin-bottom:13px; font-style:italic;">"Fresh
+                ingredients and beautiful presentation. Highly recommended!"</p>
+              <span class="reviewer-name"><i class="fa-solid fa-user"></i> Michael Chen</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="content" style="padding:22px;">
+              <span style="font-size:19px; margin-bottom:10px;">⭐⭐⭐⭐</span>
+              <p style="font-size:14px; color:#6f5540; line-height:1.7; margin-bottom:13px; font-style:italic;">"Cozy
+                atmosphere, friendly staff, and super fast delivery."</p>
+              <span class="reviewer-name"><i class="fa-solid fa-user"></i> Emma Davis</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="info-grid-about">
+        <div class="info-card-about">
+          <h3><i class="fa-solid fa-clock"></i> Opening Hours</h3>
+          <p>Open Daily<br>8:00 AM – 8:00 PM</p>
+        </div>
+        <div class="info-card-about">
+          <h3><i class="fa-solid fa-location-dot"></i> Find Us</h3>
+          <p>123 Gourmet Street<br>Cairo, Egypt</p>
+        </div>
+        <div class="info-card-about">
+          <h3><i class="fa-solid fa-calendar-check"></i> Reservation</h3>
+          <p><a href="reservation.html" style="color:#c17b3a; font-weight:700; text-decoration:none;">Book Now <i
+                class="fa-solid fa-arrow-right"></i></a></p>
+        </div>
+      </div>
+    </main>
+    <footer>&copy; 2026 Morning Bites - All Rights Reserved</footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

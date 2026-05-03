@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Morning Bites | Menu</title>
+  <link rel="icon" type="image/png" href="images/logo_icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <style>
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      justify-content: center;
+    }
+
+    .croisants {
+      background: white;
+      border: 1px solid #f0e2d4;
+      border-radius: 20px;
+      padding: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.4rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .croisants:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.1);
+    }
+
+    .croisants .img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .croisants h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #2c241a;
+    }
+
+    .croisants .ingredients {
+      font-size: 0.75rem;
+      color: #876e55;
+      line-height: 1.4;
+    }
+
+    body.dark .croisants {
+      background: #1e1e1e;
+      border-color: #2e2018;
+    }
+
+    body.dark .croisants h4 {
+      color: #f0e6da;
+    }
+
+    body.dark .croisants .ingredients {
+      color: #a07850;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="full-body">
+    <header>
+      <div class="left-header">
+        <span onclick="openNavMenu()" class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </span>
+        <div class="logo-img">
+          <img id="logo" src="images/logo_light.jpeg" alt="Morning Bites Logo" usemap="#logoMap">
+          <map name="logoMap">
+            <area shape="circle" coords="70,70,70" href="index.html" alt="Go to Home" title="🏠 Back to Home">
+          </map>
+        </div>
+        <button onclick="toggleTheme()" class="theme-btn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+      <div class="right-header">
+        <a href="profile.html" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+        <div class="cart-icon-container">
+          <span onclick="openCartMenu()" class="cart-btn"><i class="fa-solid fa-basket-shopping"></i></span>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+      </div>
+    </header>
+    <nav class="nav-overlay" id="navOverlay">
+      <div class="nav-panel">
+        <button class="close-nav" id="closeNavBtn" title="Close Panel">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h4>Explore Morning Bites</h4>
+        <ul class="nav-links">
+          <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="offers.html"><i class="fa-solid fa-tag"></i> Offers</a></li>
+          <li><a href="reservation.html"><i class="fa-solid fa-calendar-check"></i> Reservation</a></li>
+          <li><a href="delivery.html"><i class="fa-solid fa-boxes-packing"></i> Delivery</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Gallery</a></li>
+          <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+          <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="cart-overlay" id="cartOverlay">
+      <div class="cart-panel">
+        <button class="close-cart" id="closeCartBtn" title="Close Panel"><i class="fa-solid fa-xmark"></i></button>
+        <h4>Your Cart</h4>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p>Total: <span class="cart-total" id="cartTotal">0</span> EGP</p>
+        <div class="control-btns">
+          <button class="checkout">Checkout</button>
+          <button class="clear-cart" id="clearCart">Clear Cart</button>
+        </div>
+      </div>
+    </section>
+    <div class="hero-offers">
+      <h1><i class="fa-solid fa-utensils"></i> Our Menu</h1>
+      <p>Fresh, handcrafted meals made every morning — explore everything we have to offer.</p>
+    </div>
+    <div class="menu-search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="menuSearchInput" placeholder="Search for a dish, drink, or ingredient...">
+    </div>
+    <p id="searchResultsTitle"
+      style="display:none; font-size:15px; font-weight:600; color:#c17b3a; margin-bottom:13px;"></p>
+    <main>
+      <section class="one">
+        <h2 class="section-title">Breakfast</h2>
+        <h3 class="subsection-title">&#9679; <i class="fa-solid fa-cookie-bite"></i> Fresh Bakery</h3>
+        <div class="menu">
+          <div class="croisants" data-id="2" data-name="Croissant" data-price="45">
+            <img class="img" src="images/plain.jpg" alt="Plain Croissant">
+            <p class="ingredients">Fresh buttery croissant, flaky on the outside and soft on the inside</p>
+            <h4>Croissant</h4>
+            <span class="price">45 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="5" data-name="Cheese Croissant" data-price="100">
+            <img class="img" src="images/cheese (2).jpg" alt="Cheese Croissant">
+            <p class="ingredients">Buttery croissant filled with cheese and turkey slices</p>
+            <h4>Cheese Croissant</h4>
+            <span class="price">100 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="6" data-name="Zaatar Croissant" data-price="90">
+            <img class="img" src="images/zaatar.jpg" alt="Zaatar Croissant">
+            <p class="ingredients">Mini croissant filled with cheese and zaatar</p>
+            <h4>Zaatar Croissant</h4>
+            <span class="price">90 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="7" data-name="Mini Pizza" data-price="60">
+            <img class="img" src="images/mini.jpg" alt="Mini Pizza">
+            <p class="ingredients">Mini Pizza topped with cheese and tomato sauce</p>
+            <h4>Mini Pizza</h4>
+            <span class="price">60 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="8" data-name="Toasts" data-price="80">
+            <img class="img" src="images/toast.jpg" alt="Toast">
+            <p class="ingredients">Toasted bread served with jam and butter</p>
+            <h4>Toast</h4>
+            <span class="price">80 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+        </div>
+        <h3 class="subsection-title">&#9679; <i class="fa-solid fa-bread-slice"></i> Sandwiches</h3>
+        <div class="menu">
+          <div class="croisants" data-id="9" data-name="Egg &amp; Cheese Sandwich" data-price="45">
+            <img class="img" src="images/egg.jpg" alt="Egg & Cheese Sandwich">
+            <p class="ingredients">Toasted sandwich filled with egg and cheese</p>
+            <h4>Egg &amp; Cheese Sandwich</h4>
+            <span class="price">45 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="10" data-name="Egg &amp; Pastrami Sandwich" data-price="90">
+            <img class="img" src="images/pastrami.jpg" alt="Egg & Pastrami Sandwich">
+            <p class="ingredients">Toasted sandwich filled with egg and pastrami</p>
+            <h4>Egg &amp; Pastrami Sandwich</h4>
+            <span class="price">90 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="11" data-name="Rumi Cheese Sandwich" data-price="50">
+            <img class="img" src="images/rumi.jpg" alt="Rumi Cheese Sandwich">
+            <p class="ingredients">Toasted sandwich filled with melted rumi cheese</p>
+            <h4>Rumi Cheese Sandwich</h4>
+            <span class="price">50 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="12" data-name="Smoked Turkey Sandwich" data-price="95">
+            <img class="img" src="images/smoked.jpg" alt="Smoked Turkey Sandwich">
+            <p class="ingredients">Toasted sandwich filled with smoked turkey slices</p>
+            <h4>Smoked Turkey Sandwich</h4>
+            <span class="price">95 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="13" data-name="Tuna Cheese Sandwich" data-price="100">
+            <img class="img" src="images/tuna.jpg" alt="Tuna Cheese Sandwich">
+            <p class="ingredients">Toasted sandwich filled with cheese and tuna</p>
+            <h4>Tuna Cheese Sandwich</h4>
+            <span class="price">100 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+        </div>
+        <h3 class="subsection-title">&#9679; <i class="fa-solid fa-leaf"></i> Salads</h3>
+        <div class="menu">
+          <div class="croisants" data-id="21" data-name="Tuna Salad" data-price="75">
+            <img class="img" src="images/Tuna Salad .jpg" alt="Tuna Salad">
+            <p class="ingredients">Tuna, lettuce, cucumber, tomatoes, corn, lemon &amp; olive oil dressing</p>
+            <h4>Tuna Salad</h4>
+            <span class="price">75 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="22" data-name="Pasta Salad" data-price="65">
+            <img class="img" src="images/paste.jpg" alt="Pasta Salad">
+            <p class="ingredients">Pasta, bell peppers, tomatoes, olive oil. <strong>Chicken or tuna can be
+                added.</strong></p>
+            <h4>Pasta Salad</h4>
+            <span class="price">65 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="23" data-name="Green Salad" data-price="50">
+            <img class="img" src="images/Garden Salad.jpg" alt="Green Salad">
+            <p class="ingredients">Lettuce, cucumber, tomatoes, carrots with lemon and olive oil dressing</p>
+            <h4>Green Salad</h4>
+            <span class="price">50 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="24" data-name="Avocado Salad" data-price="100">
+            <img class="img" src="images/Fresh Avocado  Salad .jpg" alt="Avocado Salad">
+            <p class="ingredients">Avocado with lettuce, cucumber, tomatoes. <strong>Optional: feta cheese, chicken, or
+                tuna.</strong></p>
+            <h4>Avocado Salad</h4>
+            <span class="price">100 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="25" data-name="Fruit Salad" data-price="70">
+            <img class="img" src="images/fruit salad.jpg" alt="Fruit Salad">
+            <p class="ingredients">A mix of fresh seasonal fruits. <strong>Ingredients can be added or removed upon
+                request.</strong></p>
+            <h4>Fruit Salad</h4>
+            <span class="price">70 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+        </div>
+      </section>
+      <section class="two">
+        <h2 class="section-title">Drinks &amp; Sweets</h2>
+        <h3 class="subsection-title">&#9679; <i class="fa-solid fa-mug-hot"></i> Drinks</h3>
+        <div class="menu">
+          <div class="croisants" data-id="4" data-name="Latte" data-price="55">
+            <img class="img" src="images/LATTE.jpeg" alt="Latte">
+            <p class="ingredients">Espresso with milk and foam</p>
+            <h4>Latte</h4>
+            <span class="price">55 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="14" data-name="Turkish Coffee" data-price="30">
+            <img class="img" src="images/coffe.jpg" alt="Turkish Coffee">
+            <p class="ingredients">Brewed coffee, sugar optional</p>
+            <h4>Turkish Coffee</h4>
+            <span class="price">30 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="15" data-name="Hot Chocolate" data-price="90">
+            <img class="img" src="images/Hot Chocolate .jpg" alt="Hot Chocolate">
+            <p class="ingredients">Milk, cocoa powder, sugar</p>
+            <h4>Hot Chocolate</h4>
+            <span class="price">90 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="16" data-name="Iced Mocha" data-price="70">
+            <img class="img" src="images/ice mocha.jpg" alt="Iced Mocha">
+            <p class="ingredients">Espresso, milk, chocolate syrup, ice</p>
+            <h4>Iced Mocha</h4>
+            <span class="price">70 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="17" data-name="Fresh Orange Juice" data-price="40">
+            <img class="img" src="images/Orange juice.jpg" alt="Fresh Orange Juice">
+            <p class="ingredients">Freshly squeezed orange juice</p>
+            <h4>Fresh Orange Juice</h4>
+            <span class="price">40 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+        </div>
+        <h3 class="subsection-title">&#9679; <i class="fa-solid fa-cake-candles"></i> Sweets</h3>
+        <div class="menu">
+          <div class="croisants" data-id="3" data-name="Waffles" data-price="75">
+            <img class="img" src="images/WAFFLES.jpeg" alt="Waffles">
+            <p class="ingredients">Honey waffles topped with fresh mixed fruits</p>
+            <h4>Waffles</h4>
+            <span class="price">75 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="1" data-name="Pancakes" data-price="65">
+            <img class="img" src="images/pancake.jpg" alt="Pancakes">
+            <p class="ingredients">Soft pancakes served with syrup and fruits</p>
+            <h4>Pancakes</h4>
+            <span class="price">65 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="18" data-name="Chocolate Donut" data-price="50">
+            <img class="img" src="images/dounts.jpg" alt="Chocolate Donut">
+            <p class="ingredients">Soft donut topped with rich chocolate glaze</p>
+            <h4>Chocolate Donut</h4>
+            <span class="price">50 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="19" data-name="Cookies" data-price="90">
+            <img class="img" src="images/cookies.jpg" alt="Cookies">
+            <p class="ingredients">Fresh baked cookies with a soft center</p>
+            <h4>Cookies</h4>
+            <span class="price">90 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+          <div class="croisants" data-id="20" data-name="Chocolate Croissant" data-price="55">
+            <img class="img" src="images/choolate croissant.jpg" alt="Chocolate Croissant">
+            <p class="ingredients">Buttery croissant filled with rich chocolate</p>
+            <h4>Chocolate Croissant</h4>
+            <span class="price">55 EGP</span>
+            <button class="order-card-btn core-order add-to-cart"><i class="fa-solid fa-cart-plus"></i> Add to
+              Cart</button>
+          </div>
+        </div>
+      </section>
+      <section class="price-table-section" style="margin: 2.5rem 0 1rem;">
+        <h2 class="section-title"><i class="fa-solid fa-table-list"></i> Price Summary</h2>
+        <div style="overflow-x:auto;">
+          <table class="menu-price-table">
+            <thead>
+              <tr>
+                <th><i class="fa-solid fa-layer-group"></i> Category</th>
+                <th><i class="fa-solid fa-fork-knife"></i> Item</th>
+                <th><i class="fa-solid fa-tag"></i> Price (EGP)</th>
+                <th><i class="fa-solid fa-circle-check"></i> Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="5">🥐 Bakery</td>
+                <td>Croissant</td>
+                <td>45</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Cheese Croissant</td>
+                <td>100</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Zaatar Croissant</td>
+                <td>90</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Mini Pizza</td>
+                <td>60</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Toast</td>
+                <td>80</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td rowspan="5">🥪 Sandwiches</td>
+                <td>Egg &amp; Cheese</td>
+                <td>45</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Egg &amp; Pastrami</td>
+                <td>90</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Rumi Cheese</td>
+                <td>50</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Smoked Turkey</td>
+                <td>95</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Tuna Cheese</td>
+                <td>100</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td rowspan="5">☕ Drinks</td>
+                <td>Coffee Latte</td>
+                <td>55</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Black Coffee</td>
+                <td>30</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Hot Chocolate</td>
+                <td>90</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Iced Mocha</td>
+                <td>70</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Fresh Orange Juice</td>
+                <td>40</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td rowspan="5">🍰 Sweets</td>
+                <td>Waffles</td>
+                <td>75</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Pancakes</td>
+                <td>65</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Chocolate Donut</td>
+                <td>50</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Cookies</td>
+                <td>90</td>
+                <td>✅ Daily</td>
+              </tr>
+              <tr>
+                <td>Chocolate Croissant</td>
+                <td>55</td>
+                <td>✅ Daily</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2"><i class="fa-solid fa-clock"></i> <strong>Opening Hours</strong></td>
+                <td colspan="2"><strong>Daily · 8:00 AM – 8:00 PM</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2026 Morning Bites - All Rights Reserved</footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
