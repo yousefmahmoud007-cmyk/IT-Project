@@ -186,7 +186,7 @@ body.dark footer { border-top-color: #333; color: #888;
 .nav-panel, .cart-panel {
     overflow-y: auto !important; 
     padding-bottom: 50px !important; 
-
+}
 .nav-panel::-webkit-scrollbar, .cart-panel::-webkit-scrollbar {
     width: 0px;
     background: transparent;
