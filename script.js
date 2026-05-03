@@ -434,8 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // GALLERY & RESTAURANT SLIDER //
 const galleryImages = [
-    "images/cheese (2).jpg",
- "images/cookies.jpg", 
+    "images/cheese (2).jpg", "images/Choolate croissant.jpg", "images/cookies.jpg", 
     "images/dounts.jpg", "images/egg.jpg",
     "images/fruit salad.jpg", "images/Garden Salad.jpg", "images/Hot Chocolate .jpg", 
     "images/ice mocha.jpg", "images/LATTE.jpeg", "images/mini.jpg", 
