@@ -253,6 +253,34 @@ body.dark footer { border-top-color: #333; color: #888;
     }
 }
 
+.hero {
+    display: flex !important;
+    flex-wrap: wrap !important; 
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 30px !important;
+}
+
+.hero-text {
+    flex: 1 !important;
+    min-width: 250px !important;
+}
+
+.hero-img {
+    flex: 1 !important;
+    min-width: 250px !important;
+    width: 100% !important;
+}
+
+.hero-img img {
+    width: 100% !important; 
+    height: auto !important; 
+    max-height: 350px !important; 
+    object-fit: cover !important; 
+    border-radius: 20px !important; 
+}
+
+
 @media (max-width: 480px) {
   
     .cards, .menu, .offer-grid, .explore-cards, .review-grid, .info-grid, .info-grid-about, .menu-picks {
