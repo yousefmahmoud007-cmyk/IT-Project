@@ -198,3 +198,95 @@ body.dark footer { border-top-color: #333; color: #888;
     margin: 10px 5px !important; 
     display: inline-flex !important; 
 }
+
+
+
+@media (max-width: 768px) {
+   
+    header {
+        padding: 10px 15px !important;
+    }
+    .left-header, .right-header {
+        gap: 10px !important;
+    }
+    .logo-img img {
+        height: 40px !important;
+    }
+    .menu-btn, .theme-btn, .profile-btn, .cart-btn {
+        font-size: 1.2rem !important;
+    }
+
+   
+    .cart-panel {
+        width: 100vw !important;
+        right: -100vw !important;
+        border-radius: 0 !important;
+    }
+    .nav-panel {
+        width: 85vw !important;
+        left: -85vw !important;
+    }
+
+
+    .hero, .hero-offers, .hero-reservation, .hero-delivery, .hero-about, .form-title {
+        padding: 30px 15px !important;
+    }
+    .hero-text h1, .hero-offers h1, .hero-reservation h1, .form-title h1, .hero-about h1 {
+        font-size: 1.7rem !important;
+    }
+
+
+    .profile {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 20px !important;
+        gap: 15px !important;
+    }
+    .edit {
+        bottom: -5px !important;
+        right: 30px !important;
+    }
+
+    .menu-price-table th, .menu-price-table td {
+        padding: 10px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+  
+    .cards, .menu, .offer-grid, .explore-cards, .review-grid, .info-grid, .info-grid-about, .menu-picks {
+        grid-template-columns: 1fr !important; 
+    }
+
+
+    .form-grid, .form-body {
+        grid-template-columns: 1fr !important;
+    }
+
+
+    .actions {
+        flex-direction: column !important;
+    }
+    .actions button, .actions a {
+        width: 100% !important;
+    }
+
+
+    .profile-actions {
+        flex-direction: column !important;
+    }
+    .btn-brown, .btn-outline {
+        width: 100% !important;
+    }
+
+    .contact-layout {
+        flex-direction: column !important;
+    }
+    .contact-info-side, .contact-form-side {
+        width: 100% !important;
+    }
+    .contact-form-side {
+        padding: 20px 15px !important;
+    }
+}
