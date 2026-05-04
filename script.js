@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }); 
     } 
 
-    const signupForm = document.getElementById('signupForm'); 
+       const signupForm = document.getElementById('signupForm'); 
     if (signupForm) { 
         const toggleVis = (btnId, inputId) => { 
             document.getElementById(btnId)?.addEventListener('click', function () { 
@@ -592,4 +592,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }); 
         }; 
         toggleVis('togglePass', 'password'); 
-        toggleVis('toggleConfirm', 'confirmPassword
+        toggleVis('toggleConfirm', 'confirmPassword'); 
+        
+        signupForm.addEventListener('submit', function (e) { 
+            e.preventDefault(); 
+            document.querySelectorAll('.error, .form-error').forEach(el => el.textContent = ''); 
+            let valid = true; 
+            
+            const name = document.getElementById('fullname').value.trim(); 
+            const email = document.getElementById('email').value.trim(); 
+            const phone = document.getElementById('phone').value.trim(); 
+            const pass = document.getElementById('password').value; 
+            const confirm = document.getElementById('confirmPassword').value; 
+            
+            if (!name) { document.getElementById('err-name').textContent = 'Name is required'; valid = false; } 
+            if (!email || !/\S+@\S+\.\S+/.test(email)) { document.getElementById('err-email').textContent = 'Enter a valid email'; valid = false; } 
+            if (!phone) { document.getElementById('err-phone').textContent = 'Phone is required'; valid = false; } 
+            if (pass.length < 8) { document.getElementById('err-pass').textContent = 'Min 8 characters'; valid = false; } 
+            if (pass !== confirm) { document.getElementById('err-confirm').textContent = 'Passwords do not match'; valid = false; } 
+            
+            if (valid) { 
+                sessionStorage.setItem('mb_user', JSON.stringify({ name, email, phone, avatar: viewEl ? viewEl.style.backgroundImage : '' })); 
+                window.location.href = 'profile.html'; 
+            } 
+        }); 
+    }
+
+}); // DOM End
