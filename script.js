@@ -1,19 +1,8 @@
-// ============================================================ //
-// GLOBAL VARIABLES
-// ============================================================ //
-
-// Cart Array //
+// Variables
 let cart = JSON.parse(localStorage.getItem('my_cart')) || []; 
-
-// Delivery Form Inputs //
 const inputIds = ['fname', 'lname', 'email', 'phone', 'govs', 'address', 'floorNum', 'apartNum', 'addressLabel', 'deliveryInst']; 
 
-
-// ============================================================ //
-// GLOBAL HELPER FUNCTIONS
-// ============================================================ //
-
-// UPDATE CART UI //
+// UI
 function updateUI() { 
     const cartItems = document.getElementById('cartItems'); 
     const cartTotal = document.getElementById('cartTotal'); 
@@ -38,7 +27,7 @@ function updateUI() {
     localStorage.setItem('my_cart', JSON.stringify(cart)); 
 } 
 
-// THEME TOGGLE //
+// Theme
 window.toggleTheme = function () { 
     const isDark = document.body.classList.toggle('dark'); 
     localStorage.setItem('theme', isDark ? 'dark' : 'light'); 
@@ -50,7 +39,7 @@ window.toggleTheme = function () {
     if (btn) { btn.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>'; } 
 }; 
 
-// FORM ERRORS HELPERS //
+// Delivery errors
 function showErrorDelivery(inputElement, message) { 
     clearErrorDelivery(inputElement); 
     inputElement.classList.add('error-border'); 
@@ -67,6 +56,7 @@ function clearErrorDelivery(inputElement) {
     if (existingError) { existingError.remove(); } 
 }
 
+// Form errors
 function showError(input, message) { 
     input.style.borderColor = '#e03e3e'; 
     const err = document.createElement('span'); 
@@ -80,7 +70,7 @@ function clearErrors(form) {
     form.querySelectorAll('input, textarea, select').forEach(el => { el.style.borderColor = ''; }); 
 }
 
-// CONTACT TOAST //
+// Contact
 function showToast(event) { 
     event.preventDefault(); 
     const form = event.target; 
@@ -91,7 +81,7 @@ function showToast(event) {
     
     const name = nameInput.value.trim(); 
     const email = emailInput.value.trim(); 
-    const subject = subjectInput.value.trim(); 
+    const subject = subjectInput ? subjectInput.value.trim() : ''; 
     const msg = msgInput.value.trim(); 
     
     clearErrors(form); 
@@ -99,7 +89,7 @@ function showToast(event) {
     
     if (name.length < 2) { showError(nameInput, 'Name must be at least 2 characters.'); valid = false; } 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError(emailInput, 'Please enter a valid email address.'); valid = false; } 
-    if (subject.length < 3) { showError(subjectInput, 'Subject must be at least 3 characters.'); valid = false; } 
+    if (subjectInput && subject.length < 3) { showError(subjectInput, 'Subject must be at least 3 characters.'); valid = false; } 
     if (msg.length < 10) { showError(msgInput, 'Message must be at least 10 characters.'); valid = false; } 
     
     if (!valid) return; 
@@ -114,7 +104,7 @@ function showToast(event) {
     form.reset(); 
 } 
 
-// SAVE DELIVERY SESSION //
+// Session
 function saveToSession() { 
     const form = document.querySelector('.form-container'); 
     if (!form || !form.reportValidity()) { return; } 
@@ -137,7 +127,7 @@ function saveToSession() {
     }
 } 
 
-// LOAD ON START //
+// Load
 window.onload = () => { 
     inputIds.forEach(id => { 
         const savedValue = sessionStorage.getItem(id); 
@@ -148,13 +138,10 @@ window.onload = () => {
     }); 
 }; 
 
-
-// ============================================================ //
-// MAIN EVENTS (WAIT FOR HTML TO LOAD)
-// ============================================================ //
+// DOM
 document.addEventListener('DOMContentLoaded', () => { 
     
-    // THEME ON LOAD //
+    // Theme
     if (localStorage.getItem('theme') === 'dark') { 
         document.body.classList.add('dark'); 
         const logo = document.getElementById("logo");
@@ -163,10 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btn) { btn.innerHTML = '<i class="fa-solid fa-sun"></i>'; } 
     } 
 
-    // UPDATE CART //
+    // UI
     updateUI();
 
-    // NAVIGATION PANEL //
+    // Nav
     const navOverlay = document.getElementById('navOverlay'); 
     const closeNavBtn = document.getElementById('closeNavBtn'); 
     
@@ -176,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeNavBtn) { closeNavBtn.addEventListener('click', window.closeNavMenu); } 
     if (navOverlay) { navOverlay.addEventListener('click', (e) => { if (e.target === navOverlay) window.closeNavMenu(); }); } 
     
-    // CART PANEL //
+    // Cart Panel
     const cartOverlay = document.getElementById('cartOverlay'); 
     const closeCartBtn = document.getElementById('closeCartBtn'); 
     
@@ -190,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') { window.closeNavMenu(); window.closeCartMenu(); } 
     }); 
 
-    // CART LOGIC //
+    // Cart logic
     document.querySelectorAll('.add-to-cart').forEach(button => { 
         button.addEventListener('click', () => { 
             const parent = button.parentElement; 
@@ -227,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }; 
     }
 
-    // ORDER BUTTONS //
+    // Orders
     const allOrderBtns = document.querySelectorAll('.take-to-menu'); 
     allOrderBtns.forEach((btn) => { 
         btn.addEventListener('click', (e) => { 
@@ -236,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }); 
     }); 
 
-    // MENU SEARCH //
+    // Search
     const searchInput = document.getElementById('menuSearchInput'); 
     if (searchInput) { 
         searchInput.addEventListener('input', function () { 
@@ -291,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }); 
     } 
 
-    // PROFILE PAGE //
+    // Profile
     const profileAvatar = document.getElementById('profileAvatar'); 
     const profileName = document.getElementById('profileName'); 
     
@@ -347,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (profileForm) { 
             profileForm.addEventListener('submit', function (e) { 
                 e.preventDefault(); 
-                document.querySelectorAll('.error').forEach(el => el.textContent = ''); 
+                document.querySelectorAll('.error, .form-error').forEach(el => el.textContent = ''); 
                 let valid = true; 
                 
                 const name = document.getElementById('editName').value.trim(); 
@@ -372,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }); 
     } 
 
-    // RESERVATION FORM //
+    // Reservation
     const reservationForm = document.getElementById('reservationForm'); 
     if (reservationForm) { 
         const savedName = localStorage.getItem('res_name'); 
@@ -421,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }); 
     } 
 
-    // CONTACT FORM //
+    // Contact
     const contactForm = document.querySelector('.contact-form-side form'); 
     if (contactForm) { 
         const savedSubject = sessionStorage.getItem('contact_subject'); 
@@ -432,25 +419,24 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     } 
 
-    // GALLERY & RESTAURANT SLIDER //
-const galleryImages = [
-    "images/cheese (2).jpg", "images/cookies.jpg", 
-    "images/dounts.jpg", "images/egg.jpg",
-    "images/fruit salad.jpg", "images/Garden Salad.jpg", "images/Hot Chocolate .jpg", 
-    "images/ice mocha.jpg", "images/LATTE.jpeg", "images/mini.jpg", 
-    "images/offer 1.jpeg", "images/offer 4.jpeg", "images/Orange juice.jpg", 
-    "images/pancake.jpg", "images/paste.jpg", "images/pastrami.jpg", 
-    "images/plain.jpg", "images/rumi.jpg", "images/salad.jpeg", 
-    "images/smoked.jpg", "images/sunrise.jpeg", "images/toast.jpg", 
-    "images/Tuna Salad .jpg", "images/tuna.jpg", "images/WAFFLES.jpeg", 
-    "images/zaatar.jpg"
-]; 
+    // Slider
+    const galleryImages = [
+        "images/cheese (2).jpg", "images/cookies.jpg", 
+        "images/dounts.jpg", "images/egg.jpg",
+        "images/fruit salad.jpg", "images/Garden Salad.jpg", "images/Hot Chocolate .jpg", 
+        "images/ice mocha.jpg", "images/LATTE.jpeg", "images/mini.jpg", 
+        "images/offer 1.jpeg", "images/offer 4.jpeg", "images/Orange juice.jpg", 
+        "images/pancake.jpg", "images/paste.jpg", "images/pastrami.jpg", 
+        "images/plain.jpg", "images/rumi.jpg", "images/salad.jpeg", 
+        "images/smoked.jpg", "images/sunrise.jpeg", "images/toast.jpg", 
+        "images/Tuna Salad .jpg", "images/tuna.jpg", "images/WAFFLES.jpeg", 
+        "images/zaatar.jpg"
+    ]; 
 
-const restaurantImages = [
-    "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg", "images/12.jpg"
-];
+    const restaurantImages = [
+        "images/2.jpg", "images/3.jpg", "images/4.jpg", "images/5.jpg", "images/12.jpg"
+    ];
 
-    
     let galleryIndex = 0; let restaurantIndex = 0; 
     const galleryImg = document.querySelector(".gallery img"); 
     const restaurantImg = document.querySelector(".restaurant img"); 
@@ -471,7 +457,7 @@ const restaurantImages = [
         setInterval(() => { restaurantIndex = (restaurantIndex + 1) % restaurantImages.length; restaurantImg.src = restaurantImages[restaurantIndex]; }, 3000); 
     }
 
-    // DELIVERY FORM VALIDATION //
+    // Delivery
     const fname = document.getElementById('fname'); 
     const lname = document.getElementById('lname'); 
     const phone = document.getElementById('phone'); 
@@ -551,8 +537,9 @@ const restaurantImages = [
         }); 
     }
 
-    // SIGN IN //
-    if (!document.getElementById('signupForm')) { 
+    // Sign in
+    const loginForm = document.querySelector('.sign-form:not(#signupForm)');
+    if (loginForm) { 
         document.getElementById('togglePass')?.addEventListener('click', function () { 
             const input = this.closest('.eye').querySelector('input'); 
             if(input){
@@ -562,24 +549,21 @@ const restaurantImages = [
             }
         }); 
         
-        const loginForm = document.querySelector('.sign-form'); 
-        if (loginForm) { 
-            loginForm.addEventListener('submit', function (e) { 
-                e.preventDefault(); 
-                document.querySelectorAll('.error').forEach(el => el.textContent = ''); 
-                let valid = true; 
-                
-                const email = this.querySelector('input[type="email"]').value.trim(); 
-                const pass = this.querySelector('input[type="password"]').value; 
-                
-                if (!email || !/\S+@\S+\.\S+/.test(email)) { document.getElementById('err-email').textContent = 'Enter a valid email'; valid = false; } 
-                if (pass.length < 5) { document.getElementById('err-pass').textContent = 'Password is too short'; valid = false; } 
-                if (valid) window.location.href = 'index.html'; 
-            }); 
-        } 
+        loginForm.addEventListener('submit', function (e) { 
+            e.preventDefault(); 
+            document.querySelectorAll('.error, .form-error').forEach(el => el.textContent = ''); 
+            let valid = true; 
+            
+            const email = this.querySelector('input[type="email"]').value.trim(); 
+            const pass = this.querySelector('input[type="password"]').value; 
+            
+            if (!email || !/\S+@\S+\.\S+/.test(email)) { document.getElementById('err-email').textContent = 'Enter a valid email'; valid = false; } 
+            if (pass.length < 5) { document.getElementById('err-pass').textContent = 'Password is too short'; valid = false; } 
+            if (valid) window.location.href = 'index.html'; 
+        }); 
     } 
 
-    // SIGN UP //
+    // Sign up
     const imgInput = document.getElementById('imgInput'); 
     const viewEl = document.getElementById('view'); 
     if (imgInput && viewEl) { 
@@ -608,30 +592,4 @@ const restaurantImages = [
             }); 
         }; 
         toggleVis('togglePass', 'password'); 
-        toggleVis('toggleConfirm', 'confirmPassword'); 
-        
-        signupForm.addEventListener('submit', function (e) { 
-            e.preventDefault(); 
-            document.querySelectorAll('.error').forEach(el => el.textContent = ''); 
-            let valid = true; 
-            
-            const name = document.getElementById('fullname').value.trim(); 
-            const email = document.getElementById('email').value.trim(); 
-            const phone = document.getElementById('phone').value.trim(); 
-            const pass = document.getElementById('password').value; 
-            const confirm = document.getElementById('confirmPassword').value; 
-            
-            if (!name) { document.getElementById('err-name').textContent = 'Name is required'; valid = false; } 
-            if (!email || !/\S+@\S+\.\S+/.test(email)) { document.getElementById('err-email').textContent = 'Enter a valid email'; valid = false; } 
-            if (!phone) { document.getElementById('err-phone').textContent = 'Phone is required'; valid = false; } 
-            if (pass.length < 8) { document.getElementById('err-pass').textContent = 'Min 8 characters'; valid = false; } 
-            if (pass !== confirm) { document.getElementById('err-confirm').textContent = 'Passwords do not match'; valid = false; } 
-            
-            if (valid) { 
-                sessionStorage.setItem('mb_user', JSON.stringify({ name, email, phone, avatar: viewEl ? viewEl.style.backgroundImage : '' })); 
-                window.location.href = 'profile.html'; 
-            } 
-        }); 
-    }
-
-}); // END OF DOMContentLoaded
+        toggleVis('toggleConfirm', 'confirmPassword
