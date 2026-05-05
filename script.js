@@ -617,5 +617,19 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
         }); 
     }
+    // Profile Redirect
+    const profileBtns = document.querySelectorAll('.profile-btn'); 
+    profileBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            const isLoggedIn = sessionStorage.getItem('mb_user'); 
+            
+            if (isLoggedIn) {
+                window.location.href = 'profile.html'; 
+            } else {
+                window.location.href = 'sign_in.html'; 
+            }
+        });
+    });
 
 }); // DOM End
